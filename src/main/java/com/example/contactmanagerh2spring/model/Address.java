@@ -1,11 +1,9 @@
 package com.example.contactmanagerh2spring.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "Address")
 public class Address {
 
     @Id
@@ -22,6 +20,10 @@ public class Address {
         this.city = city;
         this.zipCode = zipCode;
     }
+    public Address() {
+
+    }
+
 
     public String getAddressLine() {
         return addressLine;

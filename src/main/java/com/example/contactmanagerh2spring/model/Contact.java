@@ -1,13 +1,11 @@
 package com.example.contactmanagerh2spring.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Contacts")
 public class Contact {
 
 
@@ -19,13 +17,23 @@ public class Contact {
 
     private LocalDate dateOfBirth;
 
-//    private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
 
     public Contact(String fullName, LocalDate dateOfBirth) {
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
     }
+    public Contact(String fullName, LocalDate dateOfBirth, Address address) {
+        this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+    }
+    public Contact() {
+
+    }
+
 
     public String getFullName() {
         return fullName;
@@ -41,5 +49,13 @@ public class Contact {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

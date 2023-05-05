@@ -30,6 +30,11 @@ public class ContactController {
 //        return contactRepository.findByAddressZipCode(zipCode);
 //    }
 
+    @GetMapping(params = "zipCode")
+    public List<Contact> getContactsByZipCode(@RequestParam String zipCode) {
+        return contactService.findByAddressZipCode(zipCode);
+    }
+
     @PostMapping
     public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
         try{

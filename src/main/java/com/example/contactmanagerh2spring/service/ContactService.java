@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ContactService {
@@ -30,5 +31,12 @@ public class ContactService {
 
     public Contact createContact(Contact contact) {
         return contactRepository.save(contact);
+    }
+
+    public List<Contact> findByAddressZipCode(String zipCode) {
+        List<Contact> zipCodeContactList = contactRepository.findByAddressZipCode(zipCode);
+
+        //Only return a max of 3 results for a zip code
+        return zipCodeContactList.stream().limit(3).collect(Collectors.toList());
     }
 }
